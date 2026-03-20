@@ -1,0 +1,57 @@
+# LLM Benchmark Configuration
+# Edit this file to customize your benchmark settings
+
+server:
+  # Base URL of the OpenAI-compatible API server
+  # For llama.cpp server: http://192.168.1.14:8080/v1
+  # For Ollama: http://localhost:11434/v1
+  # For Groq: https://api.groq.com/openai/v1
+  base_url: "http://192.168.1.14:8080/v1"
+  
+  # API key (use "no-key-required" for local servers like llama.cpp)
+  api_key: "no-key-required"
+  
+  # Model name to benchmark
+  model: "Qwen3.5-35B-A3B-Q8_0"
+
+benchmark:
+  # Number of output tokens to generate for each test
+  # Tests will run with these different output sizes
+  output_tokens: [100, 200, 500]
+  
+  # Number of iterations per test (average results across iterations)
+  iterations: 3
+  
+  # Test scenarios (prompts for different use cases)
+  scenarios:
+    - "short"      # Short queries (1-2 sentences)
+    - "medium"     # Medium explanations
+    - "long"       # Long context understanding
+    - "coding"     # Code generation
+    - "math"       # Mathematical reasoning
+    - "creative"   # Creative writing
+  
+  # Prompt length variations (characters)
+  prompt_lengths: [50, 200, 500]
+  
+  # Enable streaming mode (may affect timing)
+  stream: true
+  
+  # Temperature for generation (0.0 - 1.0)
+  temperature: 0.7
+  
+  # Top-p sampling (0.0 - 1.0)
+  top_p: 0.9
+  
+  # Request timeout in seconds
+  timeout: 300.0
+
+output:
+  # Directory to save JSON results
+  output_dir: "results"
+  
+  # Save results to JSON file
+  save_json: true
+  
+  # Verbose console output
+  verbose: true
